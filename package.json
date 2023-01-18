@@ -3,15 +3,21 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prisma:studio": "npx prisma studo",
+    "prisma:migrate": "npx prisma migrate"
   },
   "dependencies": {
     "@graphql-yoga/node": "^3.3.0",
+    "@prisma/client": "^4.9.0",
     "apollo-server": "^3.11.1",
     "graphql": "^16.6.0",
     "graphql-yoga": "^3.3.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.8.1"
   }
 }
