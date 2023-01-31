@@ -9,7 +9,12 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.4",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
     "@graphql-yoga/node": "^3.3.0",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.5",
     "@prisma/client": "^4.9.0",
     "graphql": "^16.6.0",
     "graphql-yoga": "^3.3.0",

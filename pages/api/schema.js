@@ -19,6 +19,7 @@ export const schema = createSchema({
     type Mutation{
        setCounter(val: Int): Int
        addTodo(name: String): ToDo
+       deleteTodo(id: String): Boolean
     }
   `,
   resolvers: {
@@ -37,6 +38,14 @@ export const schema = createSchema({
       },
       addTodo: async (parent, {name}) => {
         return prisma.toDos.create({data: {name}});
+      },
+      deleteTodo: async(parent, {id}) => {
+        await prisma.toDos.delete({
+          where: {
+            id
+          }
+        });
+        return true;
       }
     }
   }
