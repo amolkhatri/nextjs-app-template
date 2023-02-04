@@ -1,7 +1,6 @@
 import { createSchema } from 'graphql-yoga'
 const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient() 
-
+const prisma = new PrismaClient()
 
 let counter = 0;
 
@@ -10,6 +9,7 @@ export const schema = createSchema({
     type ToDo {
       name: String
       id: String
+      completed: Boolean
     }
     type Query {
       hello: String
@@ -20,6 +20,8 @@ export const schema = createSchema({
        setCounter(val: Int): Int
        addTodo(name: String): ToDo
        deleteTodo(id: String): Boolean
+       updateStatus(id: String, completed: Boolean): Boolean
+       
     }
   `,
   resolvers: {
@@ -30,19 +32,29 @@ export const schema = createSchema({
       },
       counter: () => counter
     },
-    Mutation:{
-      setCounter: (parent, {val}) => {
-        //console.log(val);
+    Mutation: {
+      setCounter: (parent, { val }) => {
         counter = val;
         return counter;
       },
-      addTodo: async (parent, {name}) => {
-        return prisma.toDos.create({data: {name}});
+      addTodo: async (parent, { name }) => {
+        return prisma.toDos.create({ data: { name , completed: false} });
       },
-      deleteTodo: async(parent, {id}) => {
+      deleteTodo: async (parent, { id }) => {
         await prisma.toDos.delete({
           where: {
             id
+          }
+        });
+        return true;
+      },
+      updateStatus: async (parent, { id, completed}) => {
+        await prisma.toDos.update({
+          where: {
+            id
+          },
+          data: {
+            completed: completed
           }
         });
         return true;

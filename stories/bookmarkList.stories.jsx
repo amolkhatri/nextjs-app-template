@@ -1,4 +1,4 @@
-import BookmarkList from "./bookmarkList";
+import BookmarkList, {FETCH_QUERY} from "./bookmarkList";
 
 export default {
   title: "Component/BookmarkList",
@@ -9,8 +9,31 @@ export default {
 };
 
 
-const Template = (args) => <BookmarkList {...args} />
+const Template = () => <BookmarkList />
 
 export const BookmarkListTest = Template.bind({})
 
-BookmarkListTest.args = { bookmarks: [{ title: "Bookmark1" }, { title: "Bookmark2" } ] };
+BookmarkListTest.parameters = {
+    apolloClient:{
+        mocks:[
+            {
+                request: {
+                  query: FETCH_QUERY,
+                },
+                result: {
+                  data: {
+                     bookmarks: [
+                        {
+                            title: "Bookmark 1"
+                        },
+                        {
+                            title: "Bookmark 3"
+                        }
+                     ]
+                  }
+                }
+            }
+        ]
+    }
+}
+p
