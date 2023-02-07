@@ -8,9 +8,13 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "storybook-addon-apollo-client",
+    '@chakra-ui/storybook-addon'
   ],
   "framework": "@storybook/react",
   "core": {
     "builder": "@storybook/builder-webpack5"
+  },
+  features: {
+    emotionAlias: false,
   }
 }

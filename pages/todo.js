@@ -2,6 +2,7 @@
 import TodoList from "../stories/todoList"
 import { gql, useQuery, useMutation } from "@apollo/client"
 import AddTodoComponent from "../stories/addTodo";
+import { Grid } from "@mui/material";
 
 export const FETCH_QUERY = gql`
     query Todos{
@@ -84,10 +85,23 @@ export default function Todos() {
     }
 
 
+    //material ui make the component at center of the page
+
     return (
-        <div>
+        <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="flex-start"
+        justifyContent="center"
+        style={{ minHeight: '100vh' }}
+      >
+        <Grid item xs={3}>
             <AddTodoComponent onAddTodo={onAddTodo}> </AddTodoComponent>
             <TodoList todos={data.todos} onDeleteTodo={onDeleteTodo} onStatusChange={onStatusChange} />
-        </div>
+        </Grid>
+        </Grid>
     )
+
+   
 }   
